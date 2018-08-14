@@ -1014,8 +1014,8 @@ body .help-block.text-danger{
     color: #18d26e;
 }
 .submit-wrap{
-    height: 107px;
+    /* height: 107px; */
 }
 .msg-tips{
-    height: 30px;
+    /* height: 30px; */
 }
