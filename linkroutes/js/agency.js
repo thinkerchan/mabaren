@@ -48,15 +48,33 @@ $('.navbar-collapse ul li a').click(function() {
 
 // Async contact form
 $('form[id=contactForm]').submit(function(){
-  $.post($(this).attr('action'), $(this).serialize(), function(res){
-    $('form[id=contactForm] #success').hide();
-    $('form[id=contactForm] #error').hide();
-    if (res.code == "200")
-      $('form[id=contactForm] #success').show();
-    }).fail(function(){
-    $('form[id=contactForm] #success').hide();
-    $('form[id=contactForm] #error').hide();
-    $('form[id=contactForm] #error').show();
+  $('#Jloading').show();
+  e.preventDefault();
+  var name = $('#name').val();
+  var email = $('#email').val();
+  var phone = $('#phone').val();
+  var comments = $('#message').val();
+
+  $('button.btn-xl').addClass('disabled').attr('disabled','disabled');
+  $.ajax({
+    url:'https://theutopia.cn/phpmailer/index.php',
+    method:'POST',
+    data:{
+      name:name,
+      email:email,
+      phone:phone,
+      cmt:comments
+    },
+    dataType:"json",
+    success:function(data) {
+      $('#Jloading').hide();
+      $('button.btn-xl').removeClass('disabled').removeAttr('disabled');
+      if (data.code == 200) {
+        $('#success').show();
+      }else{
+        $('#error').show();
+      }
+    }
   });
   return false;
 });
