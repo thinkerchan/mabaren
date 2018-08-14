@@ -47,9 +47,9 @@ $('.navbar-collapse ul li a').click(function() {
 });
 
 // Async contact form
-$('#contactForm').on('submit',function(){
-  $('#Jloading').show();
+$('#contactForm').on('submit',function(e){
   e.preventDefault();
+  $('#Jloading').show();
   var name = $('#name').val();
   var email = $('#email').val();
   var phone = $('#phone').val();
